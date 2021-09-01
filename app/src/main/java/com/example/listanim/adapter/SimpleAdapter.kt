@@ -32,13 +32,16 @@ class SimpleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val binding = (holder as SimpleViewHolder).binding
 
         binding.icon.setOnClickListener {
-            listener?.click(it,position,binding.icon.id)
+            listener?.click(position,binding.icon.id,it)
         }
         binding.title.apply {
             setOnClickListener {
-                listener?.click(it,position,this.id)
+                listener?.click(position,binding.title.id,it)
             }
             text = position.toString()
+        }
+        holder.itemView.setOnClickListener {
+            listener?.itemClick(position)
         }
     }
 
@@ -52,7 +55,8 @@ class SimpleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     interface ItemTouchListener{
-        fun click(view:View,position: Int,resId:Int)
+        fun click(position: Int,resId:Int,view:View)
+        fun itemClick(position: Int)
     }
 
     fun setListener(listener:ItemTouchListener){

@@ -85,7 +85,7 @@ class RecyclerViewActivity : AppCompatActivity() {
     }
 
     private val itemClickListener = object : SimpleAdapter.ItemTouchListener{
-        override fun click(view: View, position: Int, resId: Int) {
+        override fun click(position: Int, resId: Int, view: View) {
             when(resId){
                 R.id.icon -> {
                     view.startAnimation(AnimationUtils.loadAnimation(this@RecyclerViewActivity,R.anim.roate_360))
@@ -93,7 +93,14 @@ class RecyclerViewActivity : AppCompatActivity() {
                 R.id.title -> {
 
                 }
+                else -> {
+
+                }
             }
+        }
+
+        override fun itemClick(position: Int) {
+
         }
     }
 
